@@ -1,14 +1,32 @@
 package com.zybooks.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
-import android.os.Bundle;
+import android.app.Application;
+
+import com.zybooks.finalproject.model.memoRepository;
+
+import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note);
+   // private final memoRepository mMemoRepository;
+
+   /* public NoteActivity(Application application) {
+        super(application);
+        mMemoRepository = memoRepository.getInstance(application.getApplicationContext());
     }
+
+    public LiveData<List<memoRepository>> getSubjects() {
+        return mMemoRepository.getMemos();
+    }
+
+    public void addMemo(memoRepository memo) {
+        mMemoRepository.addMemo(memo);
+    }
+
+    public void deleteMemo(memoRepository memo) {
+        memoRepository.deleteMemo(memo);
+    }*/
 }
