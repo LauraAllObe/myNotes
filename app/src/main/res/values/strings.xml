@@ -47,4 +47,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="save">save</string>
     <string name="cancelEdit">cancel</string>
+    <string name="enter_note_title">Enter note title</string>
+    <string name="enter_note_content">Enter note content</string>
+    <string name="save_note">Save Note</string>
 </resources>
