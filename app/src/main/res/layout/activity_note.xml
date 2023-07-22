@@ -26,6 +26,6 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:contentDescription="@string/add_memo"
-        android:src="@drawable/note_add_24"
+        android:src="@drawable/add__1_"
         tools:ignore="ImageContrastCheck" />
 </LinearLayout>

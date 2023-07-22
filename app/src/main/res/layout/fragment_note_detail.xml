@@ -10,17 +10,20 @@
         android:id="@+id/note_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="note title"/>
+        tools:ignore="TextSizeCheck"
+        tools:text="note title" />
+
     <TextView
         android:id="@+id/note_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="note text"/>
+        tools:ignore="TextSizeCheck"
+        tools:text="note text" />
     <ImageButton
         android:id="@+id/cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cancel"
+        android:src="@drawable/cancelnote"
         android:contentDescription="@string/cancelEdit"
         />
     <ImageButton
