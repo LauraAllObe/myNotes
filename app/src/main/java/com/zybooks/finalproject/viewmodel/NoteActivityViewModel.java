@@ -1,27 +1,27 @@
 package com.zybooks.finalproject.viewmodel;
 
 import android.app.Application;
-
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 import com.zybooks.finalproject.model.Note;
 import com.zybooks.finalproject.repo.MemoRepository;
+import java.util.List;
 
-public class NoteActivityViewModel extends ViewModel{
+public class NoteActivityViewModel extends AndroidViewModel{
     private final MemoRepository memoRepository;
-    private LiveData<Note> noteLiveData;
-
     public NoteActivityViewModel(Application application){
         //Initialize MemoRepository
+        super(application);
         memoRepository = MemoRepository.getInstance(application.getApplicationContext());
     }
 
     //retrieve a specific note by its ID from the repository
     public LiveData<Note> getNoteLiveData(long noteId) {
-        if (noteLiveData == null) {
-            noteLiveData = memoRepository.getNote(noteId);
-        }
-        return noteLiveData;
+        return memoRepository.getNote(noteId);
+    }
+
+    public LiveData<List<Note>> getNotes() {
+        return memoRepository.getNotes();
     }
 
     //Update a note
