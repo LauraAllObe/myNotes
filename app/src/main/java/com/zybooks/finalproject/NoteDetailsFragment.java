@@ -1,24 +1,19 @@
 package com.zybooks.finalproject;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zybooks.finalproject.model.Note;
-import com.zybooks.finalproject.repo.MemoRepository;
 import com.zybooks.finalproject.viewmodel.NoteListViewModel;
 
 public class NoteDetailsFragment extends Fragment {
@@ -36,7 +31,7 @@ public class NoteDetailsFragment extends Fragment {
     private Spinner spinner;
 
     String[] fruits={"Apple","Grapes","Mango","Pineapple","Strawberry"};
-    int images[] = {R.drawable.navy,R.drawable.magenta};
+    int images[] = {R.drawable.berry, R.drawable.tomato, R.drawable.candy, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
 
     public NoteDetailsFragment() {
         // Required empty public constructor
