@@ -38,17 +38,28 @@ public class MemoRepository {
 
         MemoDatabase database = Room.databaseBuilder(context, MemoDatabase.class, "memo.db")
                 .addCallback(databaseCallback)
+                //.allowMainThreadQueries()
                 .build();
 
         mNoteDao = database.NoteDao();
+
+        if(mNoteDao.getNotes().getValue() == null || mNoteDao.getNotes().getValue().isEmpty())
+        {
+            addStarterData();
+        }
     }
 
     private void addStarterData() {
         Note note = new Note("Sample Note 1 Title", "sample note 1 text");
-        mNoteDao.addNote(note);
-
-        note = new Note("Sample Note 2 Title", "sample note 2 text");
-        mNoteDao.addNote(note);
+        note.setId(1);
+        mDatabaseExecutor.execute(() -> {
+            mNoteDao.addNote(note);
+        });
+        Note note1 = new Note("Sample Note 2 Title", "sample note 2 text");
+        note.setId(2);
+        mDatabaseExecutor.execute(() -> {
+            mNoteDao.addNote(note1);
+        });
     }
 
     public void addNote(Note note) {
@@ -63,6 +74,11 @@ public class MemoRepository {
     }
 
     public LiveData<List<Note>> getNotes() {
+        //Note tt = new Note("testt", "TESTT");
+        //tt.setId(1);
+        //mNoteDao.addNote(tt);
+        //LiveData<Note> t = mNoteDao.getNote(1);
+        //Note test = t.getValue();
         return mNoteDao.getNotes();
     }
 

@@ -29,8 +29,13 @@ public class NoteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
+
+        //ERRORS AND TESTING
         mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
+        MemoRepository memoRepository = MemoRepository.getInstance(this.getContext());
         List<Note> noteList = mNoteListViewModel.getNotes().getValue();
+        List<Note> noteList2 = memoRepository.getNotes().getValue();
+        //END ERRORS AND TESTING
 
         // Click listener for the RecyclerView
         View.OnClickListener onClickListener = itemView -> {
@@ -60,11 +65,15 @@ public class NoteFragment extends Fragment {
         RecyclerView.LayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
+
+
+        //ERRORS AND TESTING
         List<Note> notes = mNoteListViewModel.getNotes().getValue();
         mNoteListViewModel.addNote(new Note("",""));
         notes = mNoteListViewModel.getNotes().getValue();
 
         mRecyclerView.setAdapter(new NoteAdapter(notes, onClickListener));
+        //END ERRORS AND TESTING
         //Show the subjects
         //updateUI(mNoteListViewModel.getNotes().getValue());
         return rootView;
