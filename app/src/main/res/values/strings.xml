@@ -50,4 +50,12 @@
     <string name="enter_note_title">Enter note title</string>
     <string name="enter_note_content">Enter note content</string>
     <string name="save_note">Save Note</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="details">details</string>
+    <string name="add_note">add note</string>
+    <string name="the_title_for_a_note">The title for a note</string>
+    <string name="note_title">Note Title</string>
+    <string name="note_text">Note Text</string>
+    <string name="the_text_content_for_a_note">The text (content) for a note.</string>
 </resources>

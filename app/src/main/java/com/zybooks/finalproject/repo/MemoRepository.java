@@ -67,11 +67,15 @@ public class MemoRepository {
     }
 
     public void deleteNote(Note note) {
-        mDatabaseExecutor.execute(() -> mNoteDao.deleteNote(note));
+        mDatabaseExecutor.execute(() ->
+                mNoteDao.deleteNote(note)
+        );
     }
 
     public void updateNote(Note note) {
-        mDatabaseExecutor.execute(() -> mNoteDao.updateNote(note));
+        mDatabaseExecutor.execute(() ->
+                mNoteDao.updateNote(note)
+        );
     }
 
 }

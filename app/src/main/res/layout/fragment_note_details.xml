@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoteDetailsFragment">
+
+    <TextView
+        android:id="@+id/note_title_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/note_title"
+        android:text="@string/note_title"
+        android:contentDescription="@string/the_title_for_a_note"
+        />
+    <EditText
+        android:autofillHints="Note Title"
+        android:id="@+id/note_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        tools:text="@string/note_title"
+        android:inputType="textCapWords"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/note_text_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/note_text"
+        android:text="@string/note_text"
+        android:contentDescription="@string/the_text_content_for_a_note"
+        />
+    <EditText
+        android:autofillHints="Note Text"
+        android:id="@+id/note_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        tools:text="@string/note_text"
+        android:textAlignment="center"
+        android:lines="11"/>
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:textAlignment="textStart"
+        tools:text="Delete Button" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="-40dp"
+        android:layout_marginStart="280dp"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:textAlignment="textStart"
+        tools:text="Save Button" />
+
+</LinearLayout>

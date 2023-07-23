@@ -1,0 +1,23 @@
+<FrameLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".NoteFragment">
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/subject_recycler_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical" />
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/add_button"
+    android:layout_width="55dp"
+    android:layout_height="55dp"
+    android:contentDescription="@string/add_note"
+    android:layout_gravity="end|bottom"
+    android:src="@drawable/add__1_"
+    android:layout_margin="16dp" />
+
+</FrameLayout>

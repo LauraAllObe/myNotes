@@ -20,6 +20,10 @@ public class NoteListViewModel extends AndroidViewModel {
         return mMemoRepo.getNotes();
     }
 
+    public LiveData<Note> getNote(long noteId) {
+        return mMemoRepo.getNote(noteId);
+    }
+
     public void addNote(Note note) {
         mMemoRepo.addNote(note);
     }
@@ -27,4 +31,6 @@ public class NoteListViewModel extends AndroidViewModel {
     public void deleteNote(Note note) {
         mMemoRepo.deleteNote(note);
     }
+
+    public void updateNote(Note note) { mMemoRepo.updateNote(note);}
 }

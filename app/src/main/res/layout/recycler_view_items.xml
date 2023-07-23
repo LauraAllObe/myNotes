@@ -10,17 +10,17 @@
     <TextView
         android:id="@+id/note_title_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_height="30dp"
         android:gravity="center"
+        style="@style/CardLabel"
         />
     <TextView
         android:id="@+id/note_text_view"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="110dp"
         style="@style/CardLabel"
         android:padding="10dp"
-        android:layout_gravity="center"
-        android:gravity="center" />
+        android:gravity="center"/>
 
 </androidx.cardview.widget.CardView>
