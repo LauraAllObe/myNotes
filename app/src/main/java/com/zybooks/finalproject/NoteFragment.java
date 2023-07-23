@@ -25,7 +25,7 @@ public class NoteFragment extends Fragment {
     private NoteAdapter mNoteAdapter;
     private RecyclerView mRecyclerView;
     private NoteListViewModel mNoteListViewModel;
-
+    private static final int[] images = {R.drawable.berry, R.drawable.candy, R.drawable.tomato, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class NoteFragment extends Fragment {
         // Click listener for the RecyclerView
         View.OnClickListener onClickListener = itemView -> {
 
-            // Create fragment arguments containing the selected band ID
+            // Create fragment arguments containing the selected memo ID
             int selectedNoteId = (int) itemView.getTag();
             Bundle args = new Bundle();
             args.putInt(NoteDetailsFragment.ARG_NOTE_ID, selectedNoteId);
@@ -52,7 +52,7 @@ public class NoteFragment extends Fragment {
 
 
         rootView.findViewById(R.id.add_button).setOnClickListener(view -> {
-            // Create fragment arguments containing the selected band ID
+            // Create fragment arguments containing the selected memo ID
             int selectedNoteId = (int)-2;
             Bundle args = new Bundle();
             args.putInt(NoteDetailsFragment.ARG_NOTE_ID, selectedNoteId);
@@ -70,7 +70,7 @@ public class NoteFragment extends Fragment {
 
         //ERRORS AND TESTING
         List<Note> notes = mNoteListViewModel.getNotes().getValue();
-        mNoteListViewModel.addNote(new Note("","",1));
+        mNoteListViewModel.addNote(new Note("","",0));
         notes = mNoteListViewModel.getNotes().getValue();
 
         mRecyclerView.setAdapter(new NoteAdapter(notes, onClickListener));
@@ -129,6 +129,8 @@ public class NoteFragment extends Fragment {
         public void bind(Note note) {
             mTitleTextView.setText(note.getTitle());
             mTextTextView.setText(note.getText());
+            mTitleTextView.setBackgroundColor(images[note.getColor()]);
+            mTitleTextView.setBackgroundColor(images[note.getColor()]);
         }
     }
 }

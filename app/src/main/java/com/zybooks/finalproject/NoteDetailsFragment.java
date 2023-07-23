@@ -30,9 +30,8 @@ public class NoteDetailsFragment extends Fragment {
     private ImageButton mUndoButton;
     private ImageButton mSaveButton;
     private Spinner spinner;
-
-    String[] colors={"Berry","Candy","Tomato","Clementine","Kale", "Spirulina", "Marlin", "Lobster", "Berry"};
-    int images[] = {R.drawable.berry, R.drawable.candy, R.drawable.tomato, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
+    private final String[] colors={"Berry","Candy","Tomato","Clementine","Kale", "Spirulina", "Marlin", "Lobster", "Berry"};
+    private final int[] images = {R.drawable.berry, R.drawable.candy, R.drawable.tomato, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
 
     public NoteDetailsFragment() {
         // Required empty public constructor
@@ -55,7 +54,7 @@ public class NoteDetailsFragment extends Fragment {
 
         if(noteId < 0 || mNote == null)
         {
-            mNote = new Note("", "",1);
+            mNote = new Note("", "",0);
             mNoteListViewModel.addNote(mNote);
             noteId = (int)mNote.getId();
         }
@@ -69,18 +68,26 @@ public class NoteDetailsFragment extends Fragment {
         if (mNote != null) {
             titleTextView = rootView.findViewById(R.id.note_title_desc);
             titleTextView.setVisibility(View.GONE);
+
             titleTextEdit = rootView.findViewById(R.id.note_title);
             titleTextEdit.setText(mNote.getTitle());
+            titleTextEdit.setBackgroundColor(images[mNote.getColor()]);
 
             textTextView = rootView.findViewById(R.id.note_text_desc);
+            textTextView.setVisibility(View.GONE);
+
             textTextEdit = rootView.findViewById(R.id.note_text);
             textTextEdit.setText(mNote.getText());
-            textTextView.setVisibility(View.GONE);
+            textTextEdit.setBackgroundColor(images[mNote.getColor()]);
+
+            spinner = rootView.findViewById(R.id.colors_spinner);
+            spinner.setId(mNote.getColor());
 
             mDeleteButton = rootView.findViewById(R.id.delete_button);
             mDeleteButton.setOnClickListener( view -> {
-                mNoteListViewModel.deleteNote(mNote);
                 // Replace list with details
+                mNoteListViewModel.deleteNote(mNote);
+                mNote = null;
                 onDetach();
             });
 
@@ -88,34 +95,39 @@ public class NoteDetailsFragment extends Fragment {
             mUndoButton.setOnClickListener( view -> {
                 textTextEdit.setText(mNote.getText());
                 titleTextEdit.setText(mNote.getTitle());
+                spinner.setId(mNote.getColor());
             });
 
             mSaveButton = rootView.findViewById(R.id.save_button);
             mSaveButton.setOnClickListener( view -> {
-                mNote.setTitle(titleTextEdit.getText().toString());
-                mNote.setText(textTextEdit.getText().toString());
-                mNoteListViewModel.updateNote(mNote);
                 // Replace list with details
                 onDetach();
             });
 
-            spinner = rootView.findViewById(R.id.colors_spinner);
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     //Toast.makeText(this, "You Select Position: "+position+" "+fruits[position], Toast.LENGTH_SHORT).show();
+                    titleTextEdit.setBackgroundColor(images[mNote.getColor()]);
                 }
-
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-
+                    textTextEdit.setBackgroundColor(images[mNote.getColor()]);
                 }
             });
-
             ColorSpinnerAdapter colorSpinnerAdapter=new ColorSpinnerAdapter(getActivity(),images,colors);
             spinner.setAdapter(colorSpinnerAdapter);
         }
-
         return rootView;
+    }
+
+    @Override
+    public void onDetach()
+    {
+        mNote.setTitle(titleTextEdit.getText().toString());
+        mNote.setText(textTextEdit.getText().toString());
+        mNote.setColor(spinner.getId());
+        mNoteListViewModel.updateNote(mNote);
+        super.onDetach();
     }
 }

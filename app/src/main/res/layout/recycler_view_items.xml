@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
-        style="@style/CardLabel"
-        />
+        style="@style/CardLabel"/>
     <TextView
         android:id="@+id/note_text_view"
         android:layout_marginTop="30dp"
