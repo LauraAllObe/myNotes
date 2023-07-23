@@ -20,19 +20,20 @@
         tools:ignore="TextSizeCheck"
         tools:text="note text" />
     <ImageButton
-        android:id="@+id/cancel_button"
+        android:id="@+id/undo_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cancelnote"
-        android:contentDescription="@string/cancelEdit"
+        android:src="@drawable/undo"
+        android:contentDescription="@string/undo"
         />
+
     <ImageButton
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@id/cancel_button"
-        android:src="@drawable/check"
         android:contentDescription="@string/save"
-        />
+        android:minHeight="48dp"
+        android:src="@drawable/check" />
 
 </LinearLayout>
