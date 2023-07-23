@@ -1,7 +1,8 @@
 <resources>
     <style name="Theme.StudyHelper" parent="Theme.AppCompat.DayNight">
-        <item name="colorPrimary">@color/paleblue_900</item>
+        <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/blue_900</item>
+        <item name="colorAccent">@color/sea</item>
+        <item name="colorSecondary">@color/mint</item>
     </style>
 </resources>
