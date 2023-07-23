@@ -1,5 +1,6 @@
 package com.zybooks.finalproject;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -8,9 +9,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zybooks.finalproject.model.Note;
 import com.zybooks.finalproject.repo.MemoRepository;
@@ -26,7 +31,12 @@ public class NoteDetailsFragment extends Fragment {
     private EditText textTextEdit;
 
     private Button mDeleteButton;
+    private Button mUndoButton;
     private Button mSaveButton;
+    private Spinner spinner;
+
+    String[] fruits={"Apple","Grapes","Mango","Pineapple","Strawberry"};
+    int images[] = {R.drawable.navy,R.drawable.magenta};
 
     public NoteDetailsFragment() {
         // Required empty public constructor
@@ -49,7 +59,7 @@ public class NoteDetailsFragment extends Fragment {
 
         if(noteId < 0 || mNote == null)
         {
-            mNote = new Note("", "");
+            mNote = new Note("", "",1);
             mNoteListViewModel.addNote(mNote);
             noteId = (int)mNote.getId();
         }
@@ -78,6 +88,12 @@ public class NoteDetailsFragment extends Fragment {
                 onDetach();
             });
 
+            mUndoButton = rootView.findViewById(R.id.undo_button);
+            mUndoButton.setOnClickListener( view -> {
+                textTextEdit.setText(mNote.getText());
+                titleTextEdit.setText(mNote.getTitle());
+            });
+
             mSaveButton = rootView.findViewById(R.id.save_button);
             mSaveButton.setOnClickListener( view -> {
                 mNote.setTitle(titleTextEdit.getText().toString());
@@ -86,6 +102,22 @@ public class NoteDetailsFragment extends Fragment {
                 // Replace list with details
                 onDetach();
             });
+
+            spinner = rootView.findViewById(R.id.colors_spinner);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    //Toast.makeText(this, "You Select Position: "+position+" "+fruits[position], Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            ColorSpinnerAdapter colorSpinnerAdapter=new ColorSpinnerAdapter(getActivity(),images,fruits);
+            spinner.setAdapter(colorSpinnerAdapter);
         }
 
         return rootView;

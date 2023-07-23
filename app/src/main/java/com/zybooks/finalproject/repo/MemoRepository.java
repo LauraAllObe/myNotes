@@ -50,12 +50,12 @@ public class MemoRepository {
     }
 
     private void addStarterData() {
-        Note note = new Note("Sample Note 1 Title", "sample note 1 text");
+        Note note = new Note("Sample Note 1 Title", "sample note 1 text", 1);
         note.setId(1);
         mDatabaseExecutor.execute(() -> {
             mNoteDao.addNote(note);
         });
-        Note note1 = new Note("Sample Note 2 Title", "sample note 2 text");
+        Note note1 = new Note("Sample Note 2 Title", "sample note 2 text", 1);
         note.setId(2);
         mDatabaseExecutor.execute(() -> {
             mNoteDao.addNote(note1);

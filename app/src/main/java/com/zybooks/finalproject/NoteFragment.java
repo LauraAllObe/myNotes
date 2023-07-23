@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -69,7 +70,7 @@ public class NoteFragment extends Fragment {
 
         //ERRORS AND TESTING
         List<Note> notes = mNoteListViewModel.getNotes().getValue();
-        mNoteListViewModel.addNote(new Note("",""));
+        mNoteListViewModel.addNote(new Note("","",1));
         notes = mNoteListViewModel.getNotes().getValue();
 
         mRecyclerView.setAdapter(new NoteAdapter(notes, onClickListener));

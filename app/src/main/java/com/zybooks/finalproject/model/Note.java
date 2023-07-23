@@ -17,9 +17,14 @@ public class Note {
     @ColumnInfo(name = "text")
     private String mText;
 
-    public Note(@NonNull String title, @NonNull String text) {
+    @NonNull
+    @ColumnInfo(name = "color")
+    private Integer mColor;
+
+    public Note(@NonNull String title, @NonNull String text, @NonNull Integer color) {
         mTitle = title;
         mText = text;
+        mColor = color;
     }
 
     public long getId() {
@@ -44,5 +49,11 @@ public class Note {
 
     public void setTitle(String title) {
         mTitle = title;
+    }
+    public Integer getColor() {
+        return mColor;
+    }
+    public void setColor(Integer color) {
+        mColor = color;
     }
 }
