@@ -60,4 +60,7 @@
     <string name="colors">Colors: </string>
     <string name="color_description">Select colors for current note.</string>
     <string name="color_description_image">image of color selection</string>
+    <string name="save_button">Save Button</string>
+    <string name="undo_button">Undo Button</string>
+    <string name="delete_button">Delete Button</string>
 </resources>

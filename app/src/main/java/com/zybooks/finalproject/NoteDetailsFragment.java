@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,13 +26,13 @@ public class NoteDetailsFragment extends Fragment {
     private EditText titleTextEdit;
     private EditText textTextEdit;
 
-    private Button mDeleteButton;
-    private Button mUndoButton;
-    private Button mSaveButton;
+    private ImageButton mDeleteButton;
+    private ImageButton mUndoButton;
+    private ImageButton mSaveButton;
     private Spinner spinner;
 
-    String[] fruits={"Apple","Grapes","Mango","Pineapple","Strawberry"};
-    int images[] = {R.drawable.berry, R.drawable.tomato, R.drawable.candy, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
+    String[] colors={"Berry","Candy","Tomato","Clementine","Kale", "Spirulina", "Marlin", "Lobster", "Berry"};
+    int images[] = {R.drawable.berry, R.drawable.candy, R.drawable.tomato, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
 
     public NoteDetailsFragment() {
         // Required empty public constructor
@@ -111,7 +112,7 @@ public class NoteDetailsFragment extends Fragment {
                 }
             });
 
-            ColorSpinnerAdapter colorSpinnerAdapter=new ColorSpinnerAdapter(getActivity(),images,fruits);
+            ColorSpinnerAdapter colorSpinnerAdapter=new ColorSpinnerAdapter(getActivity(),images,colors);
             spinner.setAdapter(colorSpinnerAdapter);
         }
 

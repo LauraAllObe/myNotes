@@ -43,37 +43,34 @@
         android:lines="11"
         android:inputType="none" />
 
-    <Button
+    <ImageButton
         android:id="@+id/delete_button"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        android:textAlignment="textStart"
-        tools:text="Delete Button" />
+        android:backgroundTint="@color/beige"
+        android:src="@drawable/remove"
+        android:contentDescription="@string/delete_button"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/undo_button"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="140dp"
         android:layout_marginTop="-40dp"
-        android:textAlignment="textStart"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        tools:text="Undo Button" />
+        android:backgroundTint="@color/beige"
+        android:src="@drawable/undo"
+        android:contentDescription="@string/undo_button"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/save_button"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="-40dp"
         android:layout_marginStart="265dp"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        android:textAlignment="textStart"
-        tools:text="Save Button" />
+        android:backgroundTint="@color/beige"
+        android:src="@drawable/check"
+        android:contentDescription="@string/save_button"/>
 
     <TextView
         android:id="@+id/colors_label"
