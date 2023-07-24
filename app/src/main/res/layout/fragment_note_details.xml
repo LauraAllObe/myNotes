@@ -27,7 +27,8 @@
         android:textSize="50sp"
         tools:text="@string/note_title"
         android:inputType="textCapWords"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:backgroundTintMode="multiply"/>
 
     <TextView
         app:layout_constraintTop_toBottomOf="@id/note_title"

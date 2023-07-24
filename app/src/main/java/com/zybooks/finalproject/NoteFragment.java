@@ -34,8 +34,8 @@ public class NoteFragment extends Fragment {
         //ERRORS AND TESTING
         mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
         MemoRepository memoRepository = MemoRepository.getInstance(this.getContext());
-        List<Note> noteList = mNoteListViewModel.getNotes().getValue();
-        List<Note> noteList2 = memoRepository.getNotes().getValue();
+        //List<Note> noteList = mNoteListViewModel.getNotes().getValue();
+        //List<Note> noteList2 = memoRepository.getNotes().getValue();
         //END ERRORS AND TESTING
 
         // Click listener for the RecyclerView
@@ -69,21 +69,23 @@ public class NoteFragment extends Fragment {
 
 
         //ERRORS AND TESTING
-        List<Note> notes = mNoteListViewModel.getNotes().getValue();
-        mNoteListViewModel.addNote(new Note("","",0));
-        notes = mNoteListViewModel.getNotes().getValue();
-
-        mRecyclerView.setAdapter(new NoteAdapter(notes, onClickListener));
+        //List<Note> notes = mNoteListViewModel.getNotes().getValue();
+        //mNoteListViewModel.addNote(new Note("","",0));
+        //notes = mNoteListViewModel.getNotes().getValue();
+        mNoteListViewModel.getNotes().observe(getViewLifecycleOwner(), notes -> {
+            updateUI(notes, onClickListener);
+        });
         //END ERRORS AND TESTING
         //Show the subjects
         //updateUI(mNoteListViewModel.getNotes().getValue());
         return rootView;
     }
-    /*
-    private void updateUI(List<Note> noteList) {
-        mNoteAdapter = new NoteAdapter(noteList);
-        mRecyclerView.setAdapter(mNoteAdapter);
-    }*/
+
+    private void updateUI(List<Note> notes, View.OnClickListener onClickListener) {
+        //mNoteAdapter = new NoteAdapter(noteList);
+        //mRecyclerView.setAdapter(mNoteAdapter);
+        mRecyclerView.setAdapter(new NoteAdapter(notes, onClickListener));
+    }
 
     private class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 
@@ -130,7 +132,7 @@ public class NoteFragment extends Fragment {
             mTitleTextView.setText(note.getTitle());
             mTextTextView.setText(note.getText());
             mTitleTextView.setBackgroundColor(images[note.getColor()]);
-            mTitleTextView.setBackgroundColor(images[note.getColor()]);
+            mTextTextView.setBackgroundColor(images[note.getColor()]);
         }
     }
 }
