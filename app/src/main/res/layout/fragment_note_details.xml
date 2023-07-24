@@ -40,37 +40,41 @@
         android:textSize="40sp"
         tools:text="@string/note_text"
         android:textAlignment="center"
-        android:lines="11"
+        android:lines="10"
         android:inputType="none" />
 
-    <ImageButton
-        android:id="@+id/delete_button"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:backgroundTint="@color/beige"
-        android:src="@drawable/remove"
-        android:contentDescription="@string/delete_button"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
 
     <ImageButton
         android:id="@+id/undo_button"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="-40dp"
-        android:backgroundTint="@color/beige"
-        android:src="@drawable/undo"
-        android:contentDescription="@string/undo_button"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/undo_button"
+        android:src="@drawable/undo" />
+
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/delete_button"
+        android:src="@drawable/remove" />
 
     <ImageButton
         android:id="@+id/save_button"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="-40dp"
-        android:layout_marginStart="265dp"
-        android:backgroundTint="@color/beige"
-        android:src="@drawable/check"
-        android:contentDescription="@string/save_button"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/save_button"
+        android:src="@drawable/check" />
 
     <TextView
         android:id="@+id/colors_label"
@@ -79,14 +83,15 @@
         android:text="@string/colors"
         android:layout_marginTop="30dp"
         />
-    <Spinner
-        android:id="@+id/colors_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-22dp"
-        android:layout_marginStart="60dp"
-        android:minWidth="160dp"
-        android:contentDescription="@string/color_description"
-        />
 
+        <Spinner
+            android:id="@+id/colors_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="-22dp"
+            android:contentDescription="@string/color_description"
+            android:minWidth="160dp"
+            android:minHeight="48dp" />
+    </LinearLayout>
 </LinearLayout>

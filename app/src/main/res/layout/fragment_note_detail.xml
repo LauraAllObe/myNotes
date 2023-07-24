@@ -21,16 +21,18 @@
         tools:text="note text" />
     <ImageButton
         android:id="@+id/undo_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/undo"
         android:contentDescription="@string/undo"
         />
 
     <ImageButton
         android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="@id/cancel_button"
         android:contentDescription="@string/save"
         android:minHeight="48dp"
