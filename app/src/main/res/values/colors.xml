@@ -11,14 +11,14 @@
     <color name="mint">#CBE4DE</color>
 
     <array name="memoColors">
-        <item>#1A237E</item>
         <item>#880E4F</item>
-        <item>#006064</item>
-        <item>#F57F17</item>
-        <item>#BF360C</item>
-        <item>#01579B</item>
-        <item>#33691E</item>
-        <item>#4A148C</item>
         <item>#B71C1C</item>
+        <item>#BF360C</item>
+        <item>#F57F17</item>
+        <item>#33691E</item>
+        <item>#006064</item>
+        <item>#01579B</item>
+        <item>#1A237E</item>
+        <item>#4A148C</item>
     </array>
 </resources>

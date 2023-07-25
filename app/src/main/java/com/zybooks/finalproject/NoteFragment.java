@@ -1,6 +1,7 @@
 package com.zybooks.finalproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,13 +32,14 @@ public class NoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
 
-        //ERRORS AND TESTING
         mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
-        MemoRepository memoRepository = MemoRepository.getInstance(this.getContext());
-        //List<Note> noteList = mNoteListViewModel.getNotes().getValue();
-        //List<Note> noteList2 = memoRepository.getNotes().getValue();
-        //END ERRORS AND TESTING
 
+        // Create 2 grid layout columns
+        mRecyclerView = rootView.findViewById(R.id.subject_recycler_view);
+        RecyclerView.LayoutManager gridLayoutManager =
+                new GridLayoutManager(getActivity(), 2);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+        /*
         // Click listener for the RecyclerView
         View.OnClickListener onClickListener = itemView -> {
 
@@ -48,7 +50,7 @@ public class NoteFragment extends Fragment {
 
             // Replace list with details
             Navigation.findNavController(itemView).navigate(R.id.show_item_detail, args);
-        };
+        };*/
 
 
         rootView.findViewById(R.id.add_button).setOnClickListener(view -> {
@@ -56,44 +58,30 @@ public class NoteFragment extends Fragment {
             int selectedNoteId = (int)-2;
             Bundle args = new Bundle();
             args.putInt(NoteDetailsFragment.ARG_NOTE_ID, selectedNoteId);
+            args.putString(NoteDetailsFragment.ARG_NOTE_TITLE, "");
+            args.putString(NoteDetailsFragment.ARG_NOTE_TEXT, "");
+            args.putInt(NoteDetailsFragment.ARG_NOTE_COLOR, 0);
 
             // Replace list with details
             Navigation.findNavController(view).navigate(R.id.show_item_detail, args);
         });
 
-        // Create 2 grid layout columns
-        mRecyclerView = rootView.findViewById(R.id.subject_recycler_view);
-        RecyclerView.LayoutManager gridLayoutManager =
-                new GridLayoutManager(getActivity(), 2);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
-
-
-        //ERRORS AND TESTING
-        //List<Note> notes = mNoteListViewModel.getNotes().getValue();
-        //mNoteListViewModel.addNote(new Note("","",0));
-        //notes = mNoteListViewModel.getNotes().getValue();
         mNoteListViewModel.getNotes().observe(getViewLifecycleOwner(), notes -> {
-            updateUI(notes, onClickListener);
+            updateUI(notes);
         });
-        //END ERRORS AND TESTING
-        //Show the subjects
-        //updateUI(mNoteListViewModel.getNotes().getValue());
+
         return rootView;
     }
 
-    private void updateUI(List<Note> notes, View.OnClickListener onClickListener) {
-        //mNoteAdapter = new NoteAdapter(noteList);
-        //mRecyclerView.setAdapter(mNoteAdapter);
-        mRecyclerView.setAdapter(new NoteAdapter(notes, onClickListener));
+    private void updateUI(List<Note> notes) {
+        mRecyclerView.setAdapter(new NoteAdapter(notes));
     }
 
     private class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 
         private final List<Note> mNotes;
-        private final View.OnClickListener mOnClickListener;
-        public NoteAdapter(List<Note> notes, View.OnClickListener onClickListener) {
+        public NoteAdapter(List<Note> notes) {
             mNotes = notes;
-            mOnClickListener = onClickListener;
         }
 
         @NonNull
@@ -108,7 +96,20 @@ public class NoteFragment extends Fragment {
             Note note = mNotes.get(position);
             holder.bind(note);
             holder.itemView.setTag(note.getId());
-            holder.itemView.setOnClickListener(mOnClickListener);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //int selectedNoteId = (int) itemView.getTag();
+                    Bundle args = new Bundle();
+                    args.putInt(NoteDetailsFragment.ARG_NOTE_ID, (int)note.getId());
+                    args.putString(NoteDetailsFragment.ARG_NOTE_TITLE, note.getTitle());
+                    args.putString(NoteDetailsFragment.ARG_NOTE_TEXT, note.getText());
+                    args.putInt(NoteDetailsFragment.ARG_NOTE_COLOR, note.getColor());
+
+                    // Replace list with details
+                    Navigation.findNavController(holder.itemView).navigate(R.id.show_item_detail, args);
+                }
+            });
         }
 
         @Override
@@ -117,7 +118,7 @@ public class NoteFragment extends Fragment {
         }
     }
 
-    private static class NoteHolder extends RecyclerView.ViewHolder {
+    private static class NoteHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final TextView mTitleTextView;
         private final TextView mTextTextView;
@@ -126,13 +127,27 @@ public class NoteFragment extends Fragment {
             super(inflater.inflate(R.layout.recycler_view_items, parent, false));
             mTitleTextView = itemView.findViewById(R.id.note_title_view);
             mTextTextView = itemView.findViewById(R.id.note_text_view);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Note note) {
+
             mTitleTextView.setText(note.getTitle());
             mTextTextView.setText(note.getText());
-            mTitleTextView.setBackgroundColor(images[note.getColor()]);
-            mTextTextView.setBackgroundColor(images[note.getColor()]);
+            itemView.setTag(note.getId());
+            int[] colorCode = {-7860657, -4776932, -4246004, -688361, -13407970, -16752540, -16689253, -15064194, -11922292};
+            mTitleTextView.setBackgroundColor(colorCode[note.getColor()]);
+            mTextTextView.setBackgroundColor(colorCode[note.getColor()]);
+        }
+
+        @Override
+        public void onClick(View view) {
+            //int selectedNoteId = (int) itemView.getTag();
+            Bundle args = new Bundle();
+            args.putInt(NoteDetailsFragment.ARG_NOTE_ID, (int) itemView.getTag());
+
+            // Replace list with details
+            Navigation.findNavController(itemView).navigate(R.id.show_item_detail, args);
         }
     }
 }
