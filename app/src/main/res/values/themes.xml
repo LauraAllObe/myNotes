@@ -1,8 +1,9 @@
 <resources>
     <style name="Theme.finalProject" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/brown</item>
-        <item name="colorPrimaryDark">@color/outlawed_orange</item>
+        <item name="colorPrimaryDark">@color/another_brwon</item>
+        <item name="colorPrimary">@color/brown2</item>
         <item name="colorAccent">@color/beige</item>
+
     </style>
 
     <style name="title">

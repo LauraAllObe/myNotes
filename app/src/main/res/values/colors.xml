@@ -2,6 +2,9 @@
 <resources>
     <color name="brown">#5C3D2E</color>
     <color name="outlawed_orange">#B85C38</color>
+    <color name="light_brown">#A05344</color>
+    <color name="another_brwon">#87431D</color>
+    <color name="brown2">#C87941</color>
     <color name="beige">#E0C097</color>
 
     <!-- dark theme -->
