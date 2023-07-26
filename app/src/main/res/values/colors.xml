@@ -7,12 +7,6 @@
     <color name="brown2">#C87941</color>
     <color name="beige">#E0C097</color>
 
-    <!-- dark theme -->
-    <color name="black">#000</color>
-    <color name="green">#2E4F4F</color>
-    <color name="sea">#0E8388</color>
-    <color name="mint">#CBE4DE</color>
-
     <array name="memoColors">
         <item>#880E4F</item>
         <item>#B71C1C</item>

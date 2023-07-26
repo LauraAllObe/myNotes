@@ -1,9 +1,14 @@
 <resources>
-    <style name="Theme.finalProject" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.finalProject" parent="Theme.AppCompat.DayNight">
         <item name="colorPrimaryDark">@color/another_brwon</item>
         <item name="colorPrimary">@color/brown2</item>
         <item name="colorAccent">@color/beige</item>
+    </style>
 
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:textSize">40dp</item>
+        <item name="android:textColor">@color/beige</item>
+        <item name="android:fontFamily">cursive</item>
     </style>
 
     <style name="title">

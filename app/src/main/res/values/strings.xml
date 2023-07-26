@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">finalProject</string>
+    <string name="app_name">My Notes</string>
+    <string name="action_bar_title">My Notes</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="add">Add</string>
