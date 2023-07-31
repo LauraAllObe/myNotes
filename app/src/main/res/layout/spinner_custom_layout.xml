@@ -10,7 +10,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="5dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/berry"
         android:contentDescription="@string/color_description_image"/>
 
     <TextView
@@ -20,7 +20,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_gravity="center"
-        android:text="Custom Text"
+        android:text="Note Color"
         android:textColor="#000" />
 
 </LinearLayout>

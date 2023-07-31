@@ -25,15 +25,6 @@ public class NoteListViewModel extends AndroidViewModel {
     }
 
     public void addNote(Note note) {
-        /*
-        if(note.getId() == 0)
-        {
-            //LiveData<Note> t = mMemoRepo.getNote(1);
-            //Note test = t.getValue();
-            if(mMemoRepo.getNotes().getValue() != null)
-                note.setId(mMemoRepo.getNotes().getValue().size()+1);
-        }
-         */
         mMemoRepo.addNote(note);
     }
 

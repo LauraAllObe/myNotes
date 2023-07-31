@@ -55,11 +55,6 @@ public class MemoRepository {
     }
 
     public LiveData<List<Note>> getNotes() {
-        //Note tt = new Note("testt", "TESTT");
-        //tt.setId(1);
-        //mNoteDao.addNote(tt);
-        //LiveData<Note> t = mNoteDao.getNote(1);
-        //Note test = t.getValue();
         return mNoteDao.getNotes();
     }
 
