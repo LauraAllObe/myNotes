@@ -27,7 +27,7 @@
         tools:text="@string/note_title"
         android:inputType="textCapWords"
         android:textAlignment="center"
-        android:backgroundTintMode="multiply"/>
+        android:textColor="@color/beige"/>
 
     <TextView
         app:layout_constraintTop_toBottomOf="@id/note_title"
@@ -48,7 +48,8 @@
         tools:text="@string/note_text"
         android:textAlignment="center"
         android:lines="20"
-        android:inputType="none" />
+        android:inputType="none"
+        android:textColor="@color/beige"/>
 
     <LinearLayout
         app:layout_constraintBottom_toTopOf="@id/colors"
@@ -97,14 +98,20 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp">
 
-    <Spinner
-        android:id="@+id/colors_spinner"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/note_color_button"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/color_description"
         android:minWidth="160dp"
         android:minHeight="48dp"
-        android:backgroundTint="@color/beige"/>
+        android:backgroundTint="@color/beige"
+        android:text="@string/note_color"
+        android:textAlignment="textEnd"
+        android:textSize="11sp"
+        android:lines="2"
+        android:drawableStart="@drawable/berry"
+        />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

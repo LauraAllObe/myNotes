@@ -1,6 +1,8 @@
 package com.zybooks.finalproject;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,8 @@ public class NoteDetailsFragment extends Fragment {
     private ImageButton mDeleteButton;
     private ImageButton mUndoButton;
     private ImageButton mSaveButton;
-    private Spinner spinner;
-    private int currentColorIndex;
-    private final String[] colors={"Berry","Candy","Tomato","Clementine","Kale", "Spirulina", "Marlin", "Lobster", "Berry"};
+    private Button mNoteColor;
+    private int currentColor;
     private final int[] images = {R.drawable.berry, R.drawable.candy, R.drawable.tomato, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
 
     public NoteDetailsFragment() {
@@ -66,7 +66,7 @@ public class NoteDetailsFragment extends Fragment {
 
         if(noteId < 0 || mNote == null)
         {
-            mNote = new Note("", "",0);
+            mNote = new Note("", "",-10931967);
             noteId = (int)mNote.getId();
         }
     }
@@ -77,7 +77,7 @@ public class NoteDetailsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_note_details, container, false);
 
         if (mNote != null) {
-            currentColorIndex = mNote.getColor();
+            currentColor = mNote.getColor();
             int[] colorCode = getResources().getIntArray(R.array.memoColors);
 
             titleTextView = rootView.findViewById(R.id.note_title_desc);
@@ -85,17 +85,16 @@ public class NoteDetailsFragment extends Fragment {
 
             titleTextEdit = rootView.findViewById(R.id.note_title);
             titleTextEdit.setText(mNote.getTitle());
-            titleTextEdit.setBackgroundColor(colorCode[mNote.getColor()]);
+            titleTextEdit.setBackgroundColor(currentColor);
 
             textTextView = rootView.findViewById(R.id.note_text_desc);
             textTextView.setVisibility(View.GONE);
 
             textTextEdit = rootView.findViewById(R.id.note_text);
             textTextEdit.setText(mNote.getText());
-            textTextEdit.setBackgroundColor(colorCode[mNote.getColor()]);
+            textTextEdit.setBackgroundColor(currentColor);
 
-            spinner = rootView.findViewById(R.id.colors_spinner);
-            spinner.setId(mNote.getColor());
+            mNoteColor = rootView.findViewById(R.id.note_color_button);
 
             mDeleteButton = rootView.findViewById(R.id.delete_button);
             mDeleteButton.setOnClickListener( view -> {
@@ -118,14 +117,23 @@ public class NoteDetailsFragment extends Fragment {
                 // Replace list with details
                 mNote.setTitle(titleTextEdit.getText().toString());
                 mNote.setText(textTextEdit.getText().toString());
-                mNote.setColor(currentColorIndex);
+                mNote.setColor(currentColor);
                 mNoteListViewModel.addNote(mNote);
 
                 //replace details with list
                 Navigation.findNavController(rootView).navigateUp();
             });
 
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            mNoteColor.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            openColorPickerDialogue();
+                        }
+                    }
+                    );
+
+            /*mNoteColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     //Toast.makeText(this, "You Select Position: "+position+" "+fruits[position], Toast.LENGTH_SHORT).show();
@@ -142,8 +150,40 @@ public class NoteDetailsFragment extends Fragment {
             });
             ColorSpinnerAdapter colorSpinnerAdapter=new ColorSpinnerAdapter(getActivity(),images,colors);
             spinner.setAdapter(colorSpinnerAdapter);
-            spinner.setSelection(mNote.getColor());
+            spinner.setSelection(mNote.getColor());*/
         }
         return rootView;
+    }
+
+    public void openColorPickerDialogue()
+    {
+        final AmbilWarnaDialog colorPickerDialogue = new AmbilWarnaDialog(this.getContext(), currentColor,
+                new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                    @Override
+                    public void onCancel(AmbilWarnaDialog dialog) {
+                        // leave this function body as
+                        // blank, as the dialog
+                        // automatically closes when
+                        // clicked on cancel button
+                        titleTextEdit.setBackgroundColor(mNote.getColor());
+                        textTextEdit.setBackgroundColor(mNote.getColor());
+                    }
+
+                    @Override
+                    public void onOk(AmbilWarnaDialog dialog, int color) {
+                        // change the mDefaultColor to
+                        // change the GFG text color as
+                        // it is returned when the OK
+                        // button is clicked from the
+                        // color picker dialog
+                        currentColor = color;
+
+                        // now change the picked color
+                        // preview box to mDefaultColor
+                        titleTextEdit.setBackgroundColor(currentColor);
+                        textTextEdit.setBackgroundColor(currentColor);
+                    }
+                });
+        colorPickerDialogue.show();
     }
 }

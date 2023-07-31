@@ -135,9 +135,8 @@ public class NoteFragment extends Fragment {
             mTitleTextView.setText(note.getTitle());
             mTextTextView.setText(note.getText());
             itemView.setTag(note.getId());
-            int[] colorCode = {-7860657, -4776932, -4246004, -688361, -13407970, -16752540, -16689253, -15064194, -11922292};
-            mTitleTextView.setBackgroundColor(colorCode[note.getColor()]);
-            mTextTextView.setBackgroundColor(colorCode[note.getColor()]);
+            mTitleTextView.setBackgroundColor(note.getColor());
+            mTextTextView.setBackgroundColor(note.getColor());
         }
 
         @Override
