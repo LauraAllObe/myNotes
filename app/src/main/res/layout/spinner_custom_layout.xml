@@ -10,7 +10,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="5dp"
-        android:src="@drawable/berry"
+        android:src="@drawable/note_color"
         android:contentDescription="@string/color_description_image"/>
 
     <TextView
