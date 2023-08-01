@@ -130,6 +130,7 @@
             />
 
         <Button
+            android:contentDescription="@string/text_align_button"
             android:id="@+id/text_align_button"
             android:layout_toEndOf="@id/text_color_button"
             android:layout_width="50dp"
@@ -140,15 +141,14 @@
             android:textAlignment="textEnd"
             android:textSize="11sp"
             android:lines="2"
-            android:drawableLeft="@drawable/center_align"
             />
 
         <Button
+            android:contentDescription="@string/text_size_button"
             android:id="@+id/text_size_button"
             android:layout_width="42dp"
             android:layout_height="48dp"
             android:layout_toEndOf="@id/text_align_button"
-            android:text="20"
             android:textSize="16sp"
             android:gravity="center"
             android:backgroundTint="@color/beige"/>

@@ -26,15 +26,14 @@ import java.util.List;
 
 public class NoteFragment extends Fragment {
 
-    private NoteAdapter mNoteAdapter;
     private RecyclerView mRecyclerView;
-    private NoteListViewModel mNoteListViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
 
-        mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
+        NoteListViewModel mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
 
         // Create 2 grid layout columns
         mRecyclerView = rootView.findViewById(R.id.subject_recycler_view);
@@ -58,9 +57,7 @@ public class NoteFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.show_item_detail, args);
         });
 
-        mNoteListViewModel.getNotes().observe(getViewLifecycleOwner(), notes -> {
-            updateUI(notes);
-        });
+        mNoteListViewModel.getNotes().observe(getViewLifecycleOwner(), this::updateUI);
 
         return rootView;
     }

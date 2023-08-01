@@ -81,6 +81,7 @@ public class NoteDetailsFragment extends Fragment {
         // Get the selected band
         if(noteId > 0)
         {
+            assert args != null;
             mNote = new Note(args.getString(ARG_NOTE_TITLE), args.getString(ARG_NOTE_TEXT), args.getInt(ARG_NOTE_COLOR), args.getInt(ARG_TEXT_COLOR), args.getInt(ARG_TEXT_ALIGN), args.getInt(ARG_TEXT_SIZE));
             mNote.setId(args.getInt(ARG_NOTE_ID));
         }
@@ -155,13 +156,7 @@ public class NoteDetailsFragment extends Fragment {
             mSaveButton = rootView.findViewById(R.id.save_button);
             mSaveButton.setOnClickListener( view -> {
                 // Replace list with details
-                mNote.setTitle(titleTextEdit.getText().toString());
-                mNote.setText(textTextEdit.getText().toString());
-                mNote.setNoteColor(currentNoteColor);
-                mNote.setTextColor(currentTextColor);
-                mNote.setTextAlign(currentTextAlign);
-                mNote.setTextSize(currentTextSize);
-                mNoteListViewModel.addNote(mNote);
+
 
                 //replace details with list
                 Navigation.findNavController(rootView).navigateUp();
@@ -212,7 +207,7 @@ public class NoteDetailsFragment extends Fragment {
         switch(currentTextAlign){
             case 0:
             {
-                Drawable myDrawable = ContextCompat.getDrawable(this.getContext(), R.drawable.left_align);
+                Drawable myDrawable = ContextCompat.getDrawable(view.getContext(), R.drawable.left_align);
                 //Drawable myDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.left_align, null);
                 mTextAlign.setCompoundDrawablesWithIntrinsicBounds(myDrawable,null, null, null);
 
@@ -222,7 +217,7 @@ public class NoteDetailsFragment extends Fragment {
             }
             case 1:
             {
-                Drawable myDrawable = ContextCompat.getDrawable(this.getContext(), R.drawable.center_align);
+                Drawable myDrawable = ContextCompat.getDrawable(view.getContext(), R.drawable.center_align);
                 //Drawable myDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.center_align, null);
                 mTextAlign.setCompoundDrawablesWithIntrinsicBounds(myDrawable,null, null, null);
                 textTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -231,7 +226,7 @@ public class NoteDetailsFragment extends Fragment {
             }
             case 2:
             {
-                Drawable myDrawable = ContextCompat.getDrawable(this.getContext(), R.drawable.right_align);
+                Drawable myDrawable = ContextCompat.getDrawable(view.getContext(), R.drawable.right_align);
                 //Drawable myDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.right_align, null);
                 mTextAlign.setCompoundDrawablesWithIntrinsicBounds(myDrawable,null, null, null);
                 textTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
