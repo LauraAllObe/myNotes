@@ -18,13 +18,28 @@ public class Note {
     private String mText;
 
     @NonNull
-    @ColumnInfo(name = "color")
-    private Integer mColor;
+    @ColumnInfo(name = "note color")
+    private Integer mNoteColor;
 
-    public Note(@NonNull String title, @NonNull String text, @NonNull Integer color) {
+    @NonNull
+    @ColumnInfo(name = "text color")
+    private Integer mTextColor;
+
+    @NonNull
+    @ColumnInfo(name = "text align")
+    private Integer mTextAlign;
+
+    @NonNull
+    @ColumnInfo(name = "text size")
+    private Integer mTextSize;
+
+    public Note(@NonNull String title, @NonNull String text, @NonNull Integer noteColor, @NonNull Integer textColor, @NonNull Integer textAlign, @NonNull Integer textSize) {
         mTitle = title;
         mText = text;
-        mColor = color;
+        mNoteColor = noteColor;
+        mTextColor = textColor;
+        mTextAlign = textAlign;
+        mTextSize = textSize;
     }
 
     public long getId() {
@@ -50,10 +65,29 @@ public class Note {
     public void setTitle(String title) {
         mTitle = title;
     }
-    public Integer getColor() {
-        return mColor;
+    public Integer getNoteColor() {
+        return mNoteColor;
     }
-    public void setColor(Integer color) {
-        mColor = color;
+    public void setNoteColor(Integer noteColor) {
+        mNoteColor = noteColor;
+    }
+
+    public Integer getTextColor() {
+        return mTextColor;
+    }
+    public void setTextColor(Integer textColor) {
+        mTextColor = textColor;
+    }
+    public Integer getTextAlign() {
+        return mTextAlign;
+    }
+    public void setTextAlign(Integer textAlign) {
+        mTextAlign = textAlign;
+    }
+    public Integer getTextSize() {
+        return mTextSize;
+    }
+    public void setTextSize(Integer textSize) {
+        mTextSize = textSize;
     }
 }

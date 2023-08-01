@@ -2,7 +2,9 @@ package com.zybooks.finalproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,35 +26,20 @@ import java.util.List;
 
 public class NoteFragment extends Fragment {
 
-    private NoteAdapter mNoteAdapter;
     private RecyclerView mRecyclerView;
-    private NoteListViewModel mNoteListViewModel;
-    private static final int[] images = {R.drawable.berry, R.drawable.candy, R.drawable.tomato, R.drawable.clementine, R.drawable.kale, R.drawable.spirulina, R.drawable.marlin, R.drawable.lobster, R.drawable.berry};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
 
-        mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
+        NoteListViewModel mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
 
         // Create 2 grid layout columns
         mRecyclerView = rootView.findViewById(R.id.subject_recycler_view);
         RecyclerView.LayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        /*
-        // Click listener for the RecyclerView
-        View.OnClickListener onClickListener = itemView -> {
-
-            // Create fragment arguments containing the selected memo ID
-            int selectedNoteId = (int) itemView.getTag();
-            Bundle args = new Bundle();
-            args.putInt(NoteDetailsFragment.ARG_NOTE_ID, selectedNoteId);
-
-            // Replace list with details
-            Navigation.findNavController(itemView).navigate(R.id.show_item_detail, args);
-        };*/
-
 
         rootView.findViewById(R.id.add_button).setOnClickListener(view -> {
             // Create fragment arguments containing the selected memo ID
@@ -61,14 +49,15 @@ public class NoteFragment extends Fragment {
             args.putString(NoteDetailsFragment.ARG_NOTE_TITLE, "");
             args.putString(NoteDetailsFragment.ARG_NOTE_TEXT, "");
             args.putInt(NoteDetailsFragment.ARG_NOTE_COLOR, 0);
+            args.putInt(NoteDetailsFragment.ARG_TEXT_COLOR, 0);
+            args.putInt(NoteDetailsFragment.ARG_TEXT_ALIGN, 1);
+            args.putInt(NoteDetailsFragment.ARG_TEXT_SIZE, 42);
 
             // Replace list with details
             Navigation.findNavController(view).navigate(R.id.show_item_detail, args);
         });
 
-        mNoteListViewModel.getNotes().observe(getViewLifecycleOwner(), notes -> {
-            updateUI(notes);
-        });
+        mNoteListViewModel.getNotes().observe(getViewLifecycleOwner(), this::updateUI);
 
         return rootView;
     }
@@ -99,12 +88,14 @@ public class NoteFragment extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //int selectedNoteId = (int) itemView.getTag();
                     Bundle args = new Bundle();
                     args.putInt(NoteDetailsFragment.ARG_NOTE_ID, (int)note.getId());
                     args.putString(NoteDetailsFragment.ARG_NOTE_TITLE, note.getTitle());
                     args.putString(NoteDetailsFragment.ARG_NOTE_TEXT, note.getText());
-                    args.putInt(NoteDetailsFragment.ARG_NOTE_COLOR, note.getColor());
+                    args.putInt(NoteDetailsFragment.ARG_NOTE_COLOR, note.getNoteColor());
+                    args.putInt(NoteDetailsFragment.ARG_TEXT_COLOR, note.getTextColor());
+                    args.putInt(NoteDetailsFragment.ARG_TEXT_ALIGN, note.getTextAlign());
+                    args.putInt(NoteDetailsFragment.ARG_TEXT_SIZE, note.getTextSize());
 
                     // Replace list with details
                     Navigation.findNavController(holder.itemView).navigate(R.id.show_item_detail, args);
@@ -135,13 +126,56 @@ public class NoteFragment extends Fragment {
             mTitleTextView.setText(note.getTitle());
             mTextTextView.setText(note.getText());
             itemView.setTag(note.getId());
-            mTitleTextView.setBackgroundColor(note.getColor());
-            mTextTextView.setBackgroundColor(note.getColor());
+            mTitleTextView.setBackgroundColor(note.getNoteColor());
+            mTextTextView.setBackgroundColor(note.getNoteColor());
+            mTitleTextView.setTextColor(note.getTextColor());
+            mTextTextView.setTextColor(note.getTextColor());
+            int size = note.getTextSize();
+            if(size > 80)
+            {
+                mTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
+                mTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
+            }
+            else if(size > 60)
+            {
+                mTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23);
+                mTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23);
+            }
+            else if(size > 40)
+            {
+                mTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                mTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            }
+            else if(size > 20)
+            {
+                mTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+                mTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+            }
+            else if(size > 0)
+            {
+                mTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 8);
+                mTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 8);
+            }
+
+            if(note.getTextAlign() == 0)
+            {
+                mTitleTextView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                mTextTextView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            }
+            else if(note.getTextAlign() == 1)
+            {
+                mTitleTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                mTextTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            }
+            else if(note.getTextAlign() == 2)
+            {
+                mTitleTextView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                mTextTextView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            }
         }
 
         @Override
         public void onClick(View view) {
-            //int selectedNoteId = (int) itemView.getTag();
             Bundle args = new Bundle();
             args.putInt(NoteDetailsFragment.ARG_NOTE_ID, (int) itemView.getTag());
 

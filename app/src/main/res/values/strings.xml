@@ -60,5 +60,11 @@
     <string name="undo_button">Undo Button</string>
     <string name="delete_button">Delete Button</string>
     <string name="note_color">Note Color</string>
+    <string name="text_color">Text Color</string>
+    <string name="text_align">Text Align</string>
+    <string name="size_down_button">size down button</string>
+    <string name="size_up_button">size up button</string>
+    <string name="text_size_button">text_size_button</string>
+    <string name="text_align_button">text_align_button</string>
     <string name="dark_theme">Dark Theme</string>
 </resources>
