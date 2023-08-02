@@ -32,7 +32,6 @@ public class Note {
     @NonNull
     @ColumnInfo(name = "text size")
     private Integer mTextSize;
-
     public Note(@NonNull String title, @NonNull String text, @NonNull Integer noteColor, @NonNull Integer textColor, @NonNull Integer textAlign, @NonNull Integer textSize) {
         mTitle = title;
         mText = text;

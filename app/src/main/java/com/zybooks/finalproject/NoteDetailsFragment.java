@@ -1,8 +1,6 @@
 package com.zybooks.finalproject;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -31,6 +30,8 @@ import android.widget.TextView;
 import com.zybooks.finalproject.model.Note;
 import com.zybooks.finalproject.viewmodel.NoteListViewModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class NoteDetailsFragment extends Fragment {
@@ -61,8 +62,6 @@ public class NoteDetailsFragment extends Fragment {
     private int currentTextColor;
     private int currentTextAlign;
     private int currentTextSize;
-    private Typeface currentFont;
-
     public NoteDetailsFragment() {
         // Required empty public constructor
     }
@@ -103,7 +102,7 @@ public class NoteDetailsFragment extends Fragment {
             currentTextColor = mNote.getTextColor();
             currentTextAlign = mNote.getTextAlign();
             currentTextSize = mNote.getTextSize();
-            currentFont = ResourcesCompat.getFont(rootView.getContext(), mNote.getFont());
+            Typeface font = ResourcesCompat.getFont(rootView.getContext(), R.font.black_ship);
 
             titleTextView = rootView.findViewById(R.id.note_title_desc);
             titleTextView.setVisibility(View.GONE);
@@ -112,7 +111,7 @@ public class NoteDetailsFragment extends Fragment {
             titleTextEdit.setBackgroundColor(currentNoteColor);
             titleTextEdit.setTextColor(currentTextColor);
             titleTextEdit.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentTextSize+10);
-            titleTextEdit.setTypeface(currentFont);
+            titleTextEdit.setTypeface(font);
 
             textTextView = rootView.findViewById(R.id.note_text_desc);
             textTextView.setVisibility(View.GONE);
@@ -122,7 +121,7 @@ public class NoteDetailsFragment extends Fragment {
             textTextEdit.setBackgroundColor(currentNoteColor);
             textTextEdit.setTextColor(currentTextColor);
             textTextEdit.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentTextSize);
-            textTextEdit.setTypeface(currentFont);
+            textTextEdit.setTypeface(font);
 
             mNoteColor = rootView.findViewById(R.id.note_color_button);
             mTextColor = rootView.findViewById(R.id.text_color_button);
@@ -153,7 +152,6 @@ public class NoteDetailsFragment extends Fragment {
                 mNote.setTextColor(mNote.getTextColor());
                 mNote.setTextAlign(mNote.getTextAlign());
                 mNote.setTextSize(mNote.getTextSize());
-                mNote.setFont(mNote.getFont());
             });
 
             mSaveButton = rootView.findViewById(R.id.save_button);
@@ -182,25 +180,6 @@ public class NoteDetailsFragment extends Fragment {
                         }
                     }
             );
-
-            /*mNoteColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    //Toast.makeText(this, "You Select Position: "+position+" "+fruits[position], Toast.LENGTH_SHORT).show();
-                    mNote.setColor(position);
-                    currentColorIndex = position;
-                    titleTextEdit.setBackgroundColor(colorCode[position]);
-                    textTextEdit.setBackgroundColor(colorCode[position]);
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    textTextEdit.setBackgroundColor(colorCode[mNote.getColor()]);
-                    titleTextEdit.setBackgroundColor(colorCode[mNote.getColor()]);
-                }
-            });
-            ColorSpinnerAdapter colorSpinnerAdapter=new ColorSpinnerAdapter(getActivity(),images,colors);
-            spinner.setAdapter(colorSpinnerAdapter);
-            spinner.setSelection(mNote.getColor());*/
         }
         return rootView;
     }

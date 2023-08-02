@@ -37,6 +37,7 @@ public class MemoRepository {
 
         MemoDatabase database = Room.databaseBuilder(context, MemoDatabase.class, "memo.db")
                 .addCallback(databaseCallback)
+                .fallbackToDestructiveMigration()//DELETES DATA ON MIGRATIONS
                 //.allowMainThreadQueries()
                 .build();
 
