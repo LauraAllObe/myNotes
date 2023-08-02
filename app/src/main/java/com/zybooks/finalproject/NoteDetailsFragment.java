@@ -3,9 +3,9 @@ package com.zybooks.finalproject;
 import yuku.ambilwarna.AmbilWarnaDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -15,7 +15,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -62,6 +61,7 @@ public class NoteDetailsFragment extends Fragment {
     private int currentTextColor;
     private int currentTextAlign;
     private int currentTextSize;
+    private Typeface currentFont;
 
     public NoteDetailsFragment() {
         // Required empty public constructor
@@ -103,15 +103,16 @@ public class NoteDetailsFragment extends Fragment {
             currentTextColor = mNote.getTextColor();
             currentTextAlign = mNote.getTextAlign();
             currentTextSize = mNote.getTextSize();
+            currentFont = ResourcesCompat.getFont(rootView.getContext(), mNote.getFont());
 
             titleTextView = rootView.findViewById(R.id.note_title_desc);
             titleTextView.setVisibility(View.GONE);
-
             titleTextEdit = rootView.findViewById(R.id.note_title);
             titleTextEdit.setText(mNote.getTitle());
             titleTextEdit.setBackgroundColor(currentNoteColor);
             titleTextEdit.setTextColor(currentTextColor);
             titleTextEdit.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentTextSize+10);
+            titleTextEdit.setTypeface(currentFont);
 
             textTextView = rootView.findViewById(R.id.note_text_desc);
             textTextView.setVisibility(View.GONE);
@@ -121,6 +122,7 @@ public class NoteDetailsFragment extends Fragment {
             textTextEdit.setBackgroundColor(currentNoteColor);
             textTextEdit.setTextColor(currentTextColor);
             textTextEdit.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentTextSize);
+            textTextEdit.setTypeface(currentFont);
 
             mNoteColor = rootView.findViewById(R.id.note_color_button);
             mTextColor = rootView.findViewById(R.id.text_color_button);
@@ -151,6 +153,7 @@ public class NoteDetailsFragment extends Fragment {
                 mNote.setTextColor(mNote.getTextColor());
                 mNote.setTextAlign(mNote.getTextAlign());
                 mNote.setTextSize(mNote.getTextSize());
+                mNote.setFont(mNote.getFont());
             });
 
             mSaveButton = rootView.findViewById(R.id.save_button);
@@ -160,6 +163,7 @@ public class NoteDetailsFragment extends Fragment {
 
                 //replace details with list
                 Navigation.findNavController(rootView).navigateUp();
+                //Navigation.findNavController(rootView).navigate(R.id.list_fragment);
             });
 
             mNoteColor.setOnClickListener(
@@ -210,9 +214,9 @@ public class NoteDetailsFragment extends Fragment {
                 Drawable myDrawable = ContextCompat.getDrawable(view.getContext(), R.drawable.left_align);
                 //Drawable myDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.left_align, null);
                 mTextAlign.setCompoundDrawablesWithIntrinsicBounds(myDrawable,null, null, null);
-
                 textTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
                 titleTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                textTextEdit.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
                 break;
             }
             case 1:
@@ -222,6 +226,7 @@ public class NoteDetailsFragment extends Fragment {
                 mTextAlign.setCompoundDrawablesWithIntrinsicBounds(myDrawable,null, null, null);
                 textTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 titleTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textTextEdit.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
                 break;
             }
             case 2:
@@ -231,6 +236,7 @@ public class NoteDetailsFragment extends Fragment {
                 mTextAlign.setCompoundDrawablesWithIntrinsicBounds(myDrawable,null, null, null);
                 textTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
                 titleTextEdit.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                textTextEdit.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
                 break;
             }
         }

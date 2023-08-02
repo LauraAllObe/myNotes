@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/andalascript_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/busted_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/black_ship" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/bumblebee_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/bumblebee_bold" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/buttermilk" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/chubby_outline" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/chubby" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/callifornia" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/candylane_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/courtside_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/cremona_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/cremonabold_bold" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/dairy_day" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/fireneedle" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/happy_popcorn" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/hatfielin" />
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/hatfielin_italic" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/inflatableflamingo_reg" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/joymaker_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/lovebird" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/mochafrappuccino_bold" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/mochafrappuccino_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/morisita" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nabi_modern" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/oldbiker_oldbikerall" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/oldbiker_oldbikerbase" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/oldbiker_oldbikerrough" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/qeinsha" />
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/qeinsha_italic" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/radicals" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/southaustralia_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/thequeen_regular" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/wibledon" />
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/wibledon_italic" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/magnolia" />
+</font-family>

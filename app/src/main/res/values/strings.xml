@@ -24,6 +24,45 @@
         <item>Newest first</item>
     </string-array>
 
+    <string-array name="font_spinner">
+        <item>andalascript_regular</item>
+        <item>black_ship</item>
+        <item>bumblebee_bold</item>
+        <item>bumblebee_regular</item>
+        <item>busted_regular</item>
+        <item>buttermilk</item>
+        <item>callifornia</item>
+        <item>candylane_regular</item>
+        <item>chubby</item>
+        <item>chubby_outline</item>
+        <item>courtside_regular</item>
+        <item>cremona_regular</item>
+        <item>cremonabold_bold</item>
+        <item>dairy_day</item>
+        <item>fireneedle</item>
+        <item>happy_popcorn</item>
+        <item>hatfielin</item>
+        <item>hatfielin_italic</item>
+        <item>inflatableflamingo_reg</item>
+        <item>joymaker_regular</item>
+        <item>lovebird</item>
+        <item>magnolia</item>
+        <item>mochafrappuccino_bold</item>
+        <item>mochafrappuccino_regular</item>
+        <item>morisita</item>
+        <item>nabi_modern</item>
+        <item>oldbiker_oldbikerall</item>
+        <item>oldbiker_oldbikerbase</item>
+        <item>oldbiker_oldbikerrough</item>
+        <item>qeinsha</item>
+        <item>qeinsha_italic</item>
+        <item>radicals</item>
+        <item>southaustralia_regular</item>
+        <item>thequeen_regular</item>
+        <item>wibledon</item>
+        <item>wibledon_italic</item>
+    </string-array>
+
     <!-- Edit -->
     <string name="activity_edit">EditActivity</string>
 
@@ -67,4 +106,5 @@
     <string name="text_size_button">text_size_button</string>
     <string name="text_align_button">text_align_button</string>
     <string name="dark_theme">Dark Theme</string>
+    <string name="font_spinner">font spinner</string>
 </resources>

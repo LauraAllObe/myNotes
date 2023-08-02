@@ -38,64 +38,12 @@ public class MainActivity extends AppCompatActivity {
                     Builder(navController.getGraph()).build();
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
         }
-
-        // Read the user's theme preference from SharedPreferences
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        boolean isDarkTheme = preferences.getBoolean(DARK_THEME_PREF, false);
-
-        // Set the theme based on the user's preference
-        if (isDarkTheme) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return navController.navigateUp() || super.onSupportNavigateUp();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.appbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_dark_theme) {
-            // Toggle the dark theme preference
-            toggleDarkTheme();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void toggleDarkTheme() {
-        // Read the user's theme preference from SharedPreferences
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        boolean isDarkTheme = preferences.getBoolean(DARK_THEME_PREF, false);
-
-        // Save the new theme preference (toggle the value)
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(DARK_THEME_PREF, !isDarkTheme);
-        editor.apply();
-
-        // Apply the selected theme
-        if (!isDarkTheme) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
-        // Recreate the activity to apply the theme changes
-        recreate();
     }
 
 }

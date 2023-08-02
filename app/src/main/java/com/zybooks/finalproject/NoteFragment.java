@@ -2,6 +2,8 @@ package com.zybooks.finalproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -13,6 +15,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -34,12 +37,19 @@ public class NoteFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
 
         NoteListViewModel mNoteListViewModel = new ViewModelProvider(this).get(NoteListViewModel.class);
-
         // Create 2 grid layout columns
         mRecyclerView = rootView.findViewById(R.id.subject_recycler_view);
-        RecyclerView.LayoutManager gridLayoutManager =
-                new GridLayoutManager(getActivity(), 2);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            RecyclerView.LayoutManager gridLayoutManager =
+                    new GridLayoutManager(getActivity(), 4);
+            mRecyclerView.setLayoutManager(gridLayoutManager);
+        } else {
+            RecyclerView.LayoutManager gridLayoutManager =
+                    new GridLayoutManager(getActivity(), 2);
+            mRecyclerView.setLayoutManager(gridLayoutManager);
+        }
 
         rootView.findViewById(R.id.add_button).setOnClickListener(view -> {
             // Create fragment arguments containing the selected memo ID
@@ -130,6 +140,9 @@ public class NoteFragment extends Fragment {
             mTextTextView.setBackgroundColor(note.getNoteColor());
             mTitleTextView.setTextColor(note.getTextColor());
             mTextTextView.setTextColor(note.getTextColor());
+            Typeface typeface = ResourcesCompat.getFont(itemView.getContext(), note.getFont());
+            mTitleTextView.setTypeface(typeface);
+            mTextTextView.setTypeface(typeface);
             int size = note.getTextSize();
             if(size > 80)
             {
