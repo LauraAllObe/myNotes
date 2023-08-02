@@ -149,7 +149,7 @@
             android:layout_width="42dp"
             android:layout_height="48dp"
             android:layout_toEndOf="@id/text_align_button"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:gravity="center"
             android:backgroundTint="@color/beige"/>
         <ImageButton

@@ -102,8 +102,7 @@ public class NoteDetailsFragment extends Fragment {
             currentTextColor = mNote.getTextColor();
             currentTextAlign = mNote.getTextAlign();
             currentTextSize = mNote.getTextSize();
-            Typeface font = ResourcesCompat.getFont(rootView.getContext(), R.font.black_ship);
-
+            Typeface font = ResourcesCompat.getFont(rootView.getContext(), R.font.bumblebee_bold);
             titleTextView = rootView.findViewById(R.id.note_title_desc);
             titleTextView.setVisibility(View.GONE);
             titleTextEdit = rootView.findViewById(R.id.note_title);
@@ -124,13 +123,16 @@ public class NoteDetailsFragment extends Fragment {
             textTextEdit.setTypeface(font);
 
             mNoteColor = rootView.findViewById(R.id.note_color_button);
+            mNoteColor.setTypeface(font);
             mTextColor = rootView.findViewById(R.id.text_color_button);
+            mTextColor.setTypeface(font);
 
             mTextAlign = rootView.findViewById(R.id.text_align_button);
 
 
             mSizeButton = rootView.findViewById(R.id.text_size_button);
             mSizeButton.setText((CharSequence)String.valueOf(currentTextSize));
+            mSizeButton.setTypeface(font);
             mSizeUpButton = rootView.findViewById(R.id.text_size_up_button);
 
             mSizeDownButton = rootView.findViewById(R.id.text_size_down_button);

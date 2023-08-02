@@ -144,7 +144,7 @@ public class NoteFragment extends Fragment {
             mTextTextView.setBackgroundColor(note.getNoteColor());
             mTitleTextView.setTextColor(note.getTextColor());
             mTextTextView.setTextColor(note.getTextColor());
-            Typeface typeface = ResourcesCompat.getFont(itemView.getContext(), R.font.black_ship);
+            Typeface typeface = ResourcesCompat.getFont(itemView.getContext(), R.font.bumblebee_bold);
             mTitleTextView.setTypeface(typeface);
             mTextTextView.setTypeface(typeface);
             int size = note.getTextSize();
